@@ -5,7 +5,7 @@ Summary(pl):	Modu³ autentykacji MySQL dla Apache
 Summary(pt_BR):	Autenticação via MySQL para o Apache
 Name:		apache-mod_%{mod_name}
 Version:	0.11
-Release:	1
+Release:	2
 License:	GPL
 Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
@@ -18,7 +18,7 @@ BuildRequires:	/usr/sbin/apxs
 BuildRequires:	apache(EAPI)-devel
 Prereq:		/usr/sbin/apxs
 Requires:	apache(EAPI)
-URL:		http://modntlm.sourceforge.net/
+Requires:	apache-mod_auth
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_pkglibdir	%(/usr/sbin/apxs -q LIBEXECDIR)
