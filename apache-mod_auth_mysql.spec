@@ -80,7 +80,7 @@ MySQL-databas.
 
 %build
 aclocal
-autoconf
+%{__autoconf}
 %configure \
 	--with-apxs=%{apxs} \
 	--with-mysql=%{_prefix}
