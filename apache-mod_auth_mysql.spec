@@ -14,7 +14,7 @@ Summary(pt_BR):	Autenticação via MySQL para o Apache
 Summary(sv):	Grundläggande autenticering för webbservern Apache med en MySQL-databas
 Name:		apache-mod_%{mod_name}
 Version:	2.20a
-Release:	1
+Release:	2
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://web.oyvax.com/src/mod_auth_mysql-%{version}.tar.gz
@@ -22,7 +22,7 @@ URL:		http://www.diegonet.com/support/mod_auth_mysql.shtml
 BuildRequires:	mysql-devel
 BuildRequires:	%{apxs}
 BuildRequires:	apache(EAPI)-devel
-Prereq:		%{_sbindir}/apxs
+Requires(post,preun):	%{_sbindir}/apxs
 Requires:	apache(EAPI)
 Requires:	apache-mod_auth
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -85,7 +85,7 @@ autoconf
 	--with-apxs=%{apxs} \
 	--with-mysql=%{_prefix}
 
-%{apxs} -c -I %{_includedir}/mysql mod_%{mod_name}.c -o mod_%{mod_name}.so
+%{apxs} -c -I %{_includedir}/mysql mod_%{mod_name}.c -o mod_%{mod_name}.so -lmysqlclient
 
 %install
 rm -rf $RPM_BUILD_ROOT
