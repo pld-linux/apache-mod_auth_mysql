@@ -28,7 +28,7 @@ cp %{SOURCE0} .
 gzip -d mod_%{mod_name}.c.gz
 
 %build
-/usr/sbin/apxs -c mod_%{mod_name}.c -o mod_%{mod_name}.so
+/usr/sbin/apxs -c mod_%{mod_name}.c -o mod_%{mod_name}.so -lmysqlclient
 
 %install
 rm -rf $RPM_BUILD_ROOT
