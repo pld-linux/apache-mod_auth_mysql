@@ -1,5 +1,5 @@
 %define		mod_name	auth_mysql
-%define 	apxs		/usr/sbin/apxs
+%define		apxs		/usr/sbin/apxs
 Summary:	This is the MySQL authentication module for Apache
 Summary(cs):	Základní autentizace pro WWW server Apache pomocí MySQL
 Summary(da):	Autenticering for webtjeneren Apache fra en MySQL-database
@@ -14,10 +14,11 @@ Summary(pt_BR):	Autenticação via MySQL para o Apache
 Summary(sv):	Grundläggande autenticering för webbservern Apache med en MySQL-databas
 Name:		apache-mod_%{mod_name}
 Version:	2.20a
-Release:	3
+Release:	4
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://web.oyvax.com/src/mod_auth_mysql-%{version}.tar.gz
+# Source0-md5:	49ca2a43f04939d31512616437f4fbb3
 URL:		http://www.diegonet.com/support/mod_auth_mysql.shtml
 BuildRequires:	mysql-devel
 BuildRequires:	%{apxs}
