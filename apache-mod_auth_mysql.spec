@@ -1,4 +1,5 @@
 %define		mod_name	auth_mysql
+%define 	apxs		/usr/sbin/apxs
 Summary:	This is the MySQL authentication module for Apache
 Summary(cs):	Základní autentizace pro WWW server Apache pomocí MySQL
 Summary(da):	Autenticering for webtjeneren Apache fra en MySQL-database
@@ -34,14 +35,14 @@ Source0:	ftp://ftp.kcilink.com/pub/mod_%{mod_name}.c.gz
 Source1:	ftp://ftp.kciLink.com/pub/mysql-group-auth.txt
 Patch0:		%{name}-name.patch
 BuildRequires:	mysql-devel
-BuildRequires:	/usr/sbin/apxs
+BuildRequires:	%{apxs}
 BuildRequires:	apache(EAPI)-devel
-Prereq:		/usr/sbin/apxs
+Prereq:		%{_sbindir}/apxs
 Requires:	apache(EAPI)
 Requires:	apache-mod_auth
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_pkglibdir	%(/usr/sbin/apxs -q LIBEXECDIR)
+%define		_pkglibdir	%(%{apxs} -q LIBEXECDIR)
 
 %description
 This is an authentication module for Apache that allows you to
@@ -95,7 +96,7 @@ gzip -dc %{SOURCE0} > mod_%{mod_name}.c
 %patch -p1
 
 %build
-%{_sbindir}/apxs -c mod_%{mod_name}.c -o mod_%{mod_name}.so -lmysqlclient
+%{apxs} -c mod_%{mod_name}.c -o mod_%{mod_name}.so -lmysqlclient
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -111,14 +112,14 @@ gzip -9nf *.txt
 rm -rf $RPM_BUILD_ROOT
 
 %post
-/usr/sbin/apxs -e -a -n %{mod_name} %{_pkglibdir}/mod_%{mod_name}.so 1>&2
+%{_sbindir}/apxs -e -a -n %{mod_name} %{_pkglibdir}/mod_%{mod_name}.so 1>&2
 if [ -f /var/lock/subsys/httpd ]; then
 	/etc/rc.d/init.d/httpd restart 1>&2
 fi
 
 %preun
 if [ "$1" = "0" ]; then
-	/usr/sbin/apxs -e -A -n %{mod_name} %{_pkglibdir}/mod_%{mod_name}.so 1>&2
+	%{_sbindir}/apxs -e -A -n %{mod_name} %{_pkglibdir}/mod_%{mod_name}.so 1>&2
 	if [ -f /var/lock/subsys/httpd ]; then
 		/etc/rc.d/init.d/httpd restart 1>&2
 	fi
