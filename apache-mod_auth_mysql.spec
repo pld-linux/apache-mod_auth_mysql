@@ -1,25 +1,13 @@
 %define		mod_name	auth_mysql
 %define 	apxs		/usr/sbin/apxs
 Summary:	This is the MySQL authentication module for Apache
-Summary(cs):	Základní autentizace pro WWW server Apache pomocí MySQL
-Summary(da):	Autenticering for webtjeneren Apache fra en MySQL-database
-Summary(de):	Authentifizierung für den Apache Web-Server, der eine MySQL-Datenbank verwendet
-Summary(es):	Autenticación vía MySQL para Apache
-Summary(fr):	Authentification de base pour le serveur Web Apache utilisant une base de données MySQL
-Summary(it):	Autenticazione di base per il server Web Apache mediante un database MySQL
-Summary(ja):	MySQL ¥Ç¡¼¥¿¥Ù¡¼¥¹¤ò»È¤Ã¤¿ Apache Web ¥µ¡¼¥Ð¡¼¤Ø¤Î´ðËÜÇ§¾Ú
-Summary(no):	Autentisering for webtjeneren Apache fra en MySQL-database
-Summary(pl):	Modu³ autentykacji MySQL dla Apache
-Summary(pt_BR):	Autenticação via MySQL para o Apache
-Summary(sv):	Grundläggande autenticering för webbservern Apache med en MySQL-databas
 Name:		apache-mod_%{mod_name}
-Version:	0.11
-Release:	4
+Version:	2.20a
+Release:	1
 License:	GPL
 Group:		Networking/Daemons
-Source0:	ftp://ftp.kcilink.com/pub/mod_%{mod_name}.c.gz
-Source1:	ftp://ftp.kciLink.com/pub/mysql-group-auth.txt
-Patch0:		%{name}-name.patch
+Source0:	http://web.oyvax.com/src/mod_auth_mysql-%{version}.tar.gz
+URL:		http://www.diegonet.com/support/mod_auth_mysql.shtml
 BuildRequires:	mysql-devel
 BuildRequires:	%{apxs}
 BuildRequires:	apache(EAPI)-devel
@@ -77,12 +65,14 @@ servade av en webbserver genom att kontrollera data i en
 MySQL-databas.
 
 %prep
-%setup -q -T -c
-gzip -dc %{SOURCE0} > mod_%{mod_name}.c
-%patch -p1
+%setup -q -n mod_%{mod_name}-%{version}
 
 %build
-%{apxs} -c mod_%{mod_name}.c -o mod_%{mod_name}.so -lmysqlclient
+%{configure2_13} \
+	--with-apxs=%{apxs} \
+	--with-mysql=%{_prefix}
+
+%{apxs} -c -I %{_includedir}/mysql mod_%{mod_name}.c -o mod_%{mod_name}.so
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -90,9 +80,7 @@ install -d $RPM_BUILD_ROOT%{_pkglibdir}
 
 install mod_%{mod_name}.so $RPM_BUILD_ROOT%{_pkglibdir}
 
-install %{SOURCE1} .
-
-gzip -9nf *.txt
+gzip -9nf README README-2.20a USAGE
 
 %clean
 rm -rf $RPM_BUILD_ROOT
