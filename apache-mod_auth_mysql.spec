@@ -26,6 +26,7 @@ Requires(post,preun):	%{_sbindir}/apxs
 Requires:	apache(EAPI)
 Requires:	apache-mod_auth
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Obsoletes:	mod_auth_mysql
 
 %define		_pkglibdir	%(%{apxs} -q LIBEXECDIR)
 
