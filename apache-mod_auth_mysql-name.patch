@@ -1,0 +1,47 @@
+--- apache-mod_auth_mysql-0.3/mod_auth_mysql.c.orig	Mon Oct 22 14:15:13 2001
++++ apache-mod_auth_mysql-0.3/mod_auth_mysql.c	Mon Oct 22 14:16:19 2001
+@@ -66,7 +66,7 @@
+  * instead.
+  *
+  * MODULE-DEFINITION-START
+- * Name: mysql_auth_module
++ * Name: auth_mysql_module
+  * ConfigStart
+      MYSQL_LIB="-L/usr/local/lib/mysql -lmysqlclient -lm"
+      if [ "X$MYSQL_LIB" != "X" ]; then
+@@ -358,7 +358,7 @@
+   { NULL }
+ };
+ 
+-module mysql_auth_module;
++module auth_mysql_module;
+ 
+ /*
+  * Fetch and return password string from database for named user.
+@@ -478,7 +478,7 @@
+ {
+   mysql_auth_config_rec *sec =
+     (mysql_auth_config_rec *)ap_get_module_config (r->per_dir_config,
+-						   &mysql_auth_module);
++						   &auth_mysql_module);
+   conn_rec *c = r->connection;
+   const char *sent_pw, *real_pw;
+   int res;
+@@ -523,7 +523,7 @@
+ {
+   mysql_auth_config_rec *sec =
+     (mysql_auth_config_rec *)ap_get_module_config(r->per_dir_config,
+-						  &mysql_auth_module);
++						  &auth_mysql_module);
+   char *user = r->connection->user;
+   int method = r->method_number;
+ 
+@@ -579,7 +579,7 @@
+ }
+ 
+ 
+-module mysql_auth_module = {
++module auth_mysql_module = {
+    STANDARD_MODULE_STUFF,
+    NULL,			/* initializer */
+    create_mysql_auth_dir_config, /* dir config creater */
