@@ -19,6 +19,8 @@ License:	GPL
 Group:		Networking/Daemons
 Source0:	http://web.oyvax.com/src/mod_auth_mysql-%{version}.tar.gz
 URL:		http://www.diegonet.com/support/mod_auth_mysql.shtml
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	mysql-devel
 BuildRequires:	%{apxs}
 BuildRequires:	apache(EAPI)-devel
@@ -80,7 +82,7 @@ MySQL-databas.
 %setup -q -n mod_%{mod_name}-%{version}
 
 %build
-aclocal
+%{__aclocal}
 %{__autoconf}
 %configure \
 	--with-apxs=%{apxs} \
