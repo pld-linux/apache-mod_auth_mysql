@@ -18,6 +18,7 @@ Release:	3
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://web.oyvax.com/src/mod_auth_mysql-%{version}.tar.gz
+# Source0-md5:	49ca2a43f04939d31512616437f4fbb3
 URL:		http://www.diegonet.com/support/mod_auth_mysql.shtml
 BuildRequires:	autoconf
 BuildRequires:	automake
