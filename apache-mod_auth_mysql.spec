@@ -79,7 +79,9 @@ MySQL-databas.
 %setup -q -n mod_%{mod_name}-%{version}
 
 %build
-%{configure2_13} \
+aclocal
+autoconf
+%configure \
 	--with-apxs=%{apxs} \
 	--with-mysql=%{_prefix}
 
@@ -91,7 +93,7 @@ install -d $RPM_BUILD_ROOT%{_pkglibdir}
 
 install mod_%{mod_name}.so $RPM_BUILD_ROOT%{_pkglibdir}
 
-gzip -9nf README README-2.20a USAGE
+gzip -9nf README* USAGE
 
 %clean
 rm -rf $RPM_BUILD_ROOT
