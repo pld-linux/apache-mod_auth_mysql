@@ -1,5 +1,6 @@
 %define		mod_name	auth_mysql
-Summary:	This is the PAM authentication module for Apache
+Summary:	This is the MySQL authentication module for Apache
+Summary(pl):	Modu³ autentykacji MySQL dla Apache
 Name:		apache-mod_%{mod_name}
 Version:	0.3
 Release:	2
@@ -21,6 +22,10 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 This is an authentication module for Apache that allows you to
 authenticate HTTP clients using mysql RDBMS.
+
+%description -l pl
+To jest modu³ autentykacji dla Apache pozwalaj±cy na autentykacjê
+klientów HTTP z u¿yciem bazy danych mysql.
 
 %prep 
 %setup -q -T -c
