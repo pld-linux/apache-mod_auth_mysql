@@ -2,7 +2,7 @@
 Summary:	This is the PAM authentication module for Apache
 Name:		apache-mod_%{mod_name}
 Version:	0.3
-Release:	1
+Release:	2
 License:	GPL
 Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
@@ -37,14 +37,14 @@ install -d $RPM_BUILD_ROOT%{_pkglibdir}
 install mod_%{mod_name}.so $RPM_BUILD_ROOT%{_pkglibdir}
 
 %post
-/usr/sbin/apxs -e -a -n %{mod_name} %{_pkglibdir}/mod_%{mod_name}.so 1>&2
+/usr/sbin/apxs -e -a -n mysql_auth_module %{_pkglibdir}/mod_%{mod_name}.so 1>&2
 if [ -f /var/lock/subsys/httpd ]; then
 	/etc/rc.d/init.d/httpd restart 1>&2
 fi
 
 %preun
 if [ "$1" = "0" ]; then
-	/usr/sbin/apxs -e -A -n %{mod_name} %{_pkglibdir}/mod_%{mod_name}.so 1>&2
+	/usr/sbin/apxs -e -A -n mysql_auth_module %{_pkglibdir}/mod_%{mod_name}.so 1>&2
 	if [ -f /var/lock/subsys/httpd ]; then
 		/etc/rc.d/init.d/httpd restart 1>&2
 	fi
