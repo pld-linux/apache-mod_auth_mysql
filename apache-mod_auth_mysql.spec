@@ -8,7 +8,7 @@ Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
 Group(pl):	Sieciowe/Serwery
 Source0:	ftp://ftp.kcilink.com/pub/mod_%{mod_name}.c.gz
-BuildRequires:  mysql-devel
+BuildRequires:	mysql-devel
 BuildRequires:	/usr/sbin/apxs
 BuildRequires:	apache(EAPI)-devel
 Prereq:		/usr/sbin/apxs
@@ -23,7 +23,7 @@ This is an authentication module for Apache that allows you to
 authenticate HTTP clients using mysql RDBMS.
 
 %prep 
-%setup -T -c
+%setup -q -T -c
 cp %{SOURCE0} .
 gzip -d mod_%{mod_name}.c.gz
 
