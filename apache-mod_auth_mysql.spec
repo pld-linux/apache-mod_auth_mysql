@@ -20,11 +20,11 @@ Group:		Networking/Daemons
 Source0:	http://web.oyvax.com/src/mod_auth_mysql-%{version}.tar.gz
 # Source0-md5:	49ca2a43f04939d31512616437f4fbb3
 URL:		http://www.diegonet.com/support/mod_auth_mysql.shtml
+BuildRequires:	apache(EAPI)-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	mysql-devel
 BuildRequires:	%{apxs}
-BuildRequires:	apache(EAPI)-devel
 Requires(post,preun):	%{_sbindir}/apxs
 Requires:	apache(EAPI)
 Requires:	apache-mod_auth
