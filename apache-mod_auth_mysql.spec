@@ -1,15 +1,35 @@
 %define		mod_name	auth_mysql
 Summary:	This is the MySQL authentication module for Apache
+Summary(cs):	Základní autentizace pro WWW server Apache pomocí MySQL
+Summary(da):	Autenticering for webtjeneren Apache fra en MySQL-database
+Summary(de):	Authentifizierung für den Apache Web-Server, der eine MySQL-Datenbank verwendet
 Summary(es):	Autenticación vía MySQL para Apache
+Summary(fr):	Authentification de base pour le serveur Web Apache utilisant une base de données MySQL
+Summary(it):	Autenticazione di base per il server Web Apache mediante un database MySQL
+Summary(ja):	MySQL ¥Ç¡¼¥¿¥Ù¡¼¥¹¤ò»È¤Ã¤¿ Apache Web ¥µ¡¼¥Ð¡¼¤Ø¤Î´ðËÜÇ§¾Ú
+Summary(no):	Autentisering for webtjeneren Apache fra en MySQL-database
 Summary(pl):	Modu³ autentykacji MySQL dla Apache
 Summary(pt_BR):	Autenticação via MySQL para o Apache
+Summary(sv):	Grundläggande autenticering för webbservern Apache med en MySQL-databas
 Name:		apache-mod_%{mod_name}
 Version:	0.11
 Release:	2
 License:	GPL
 Group:		Networking/Daemons
+Group(cs):	Sí»ové/Démoni
+Group(da):	Netværks/Dæmoner
 Group(de):	Netzwerkwesen/Server
+Group(es):	Red/Servidores
+Group(fr):	Réseau/Serveurs
+Group(is):	Net/Púkar
+Group(it):	Rete/Demoni
+Group(no):	Nettverks/Daemoner
 Group(pl):	Sieciowe/Serwery
+Group(pt):	Rede/Servidores
+Group(ru):	óÅÔØ/äÅÍÏÎÙ
+Group(sl):	Omre¾ni/Stre¾niki
+Group(sv):	Nätverk/Demoner
+Group(uk):	íÅÒÅÖÁ/äÅÍÏÎÉ
 Source0:	ftp://ftp.kcilink.com/pub/mod_%{mod_name}.c.gz
 Source1:	ftp://ftp.kciLink.com/pub/mysql-group-auth.txt
 Patch0:		%{name}-name.patch
@@ -27,8 +47,34 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 This is an authentication module for Apache that allows you to
 authenticate HTTP clients using mysql RDBMS.
 
+%description -l cs
+Balíèek mod_auth_mysql slou¾í pro omezení pøístupu k dokumentùm, které
+poskytuje WWW server Apache. Jména a hesla jsou ulo¾ena v databázi
+MySQL.
+
+%description -l de
+mod_auth_mysql kann verwendet werden, um den Zugriff auf von einem
+Web- Server bediente Dokumente zu beschränken, indem es die Daten in
+einer MySQL-Datenbank prüft.
+
 %description -l es
-Autenticación vía MySQL para Apache.
+mod_auth_mysql puede usarse para limitar el acceso a documentos
+servidos por un servidor web verificando datos en una base de datos
+MySQL.
+
+%description -l fr
+mod_auth_mysql peut être utilisé pour limiter l'accès à des documents
+servis par un serveur Web en vérifiant les données dans une base de
+données MySQL.
+
+%description -l it
+mod_auth_mysql può essere usato per limitare l'accesso a documenti
+serviti da un server Web controllando i dati in un database MySQL.
+
+%description -l ja
+mod_auth_mysql ¤Ï¡¢MySQL ¥Ç¡¼¥¿¥Ù¡¼¥¹¤Î¥Ç¡¼¥¿¤ò¥Á¥§¥Ã¥¯¤¹¤ë¤³¤È
+¤Ë¤è¤Ã¤Æ¡¢Web ¥µ¡¼¥Ð¡¼¤¬Äó¶¡¤¹¤ë¥É¥­¥å¥á¥ó¥È¤Ø¤Î¥¢¥¯¥»¥¹¤òÀ©¸Â¤¹¤ë¤³¤È
+¤¬¤Ç¤­¤Þ¤¹¡£
 
 %description -l pl
 To jest modu³ autentykacji dla Apache pozwalaj±cy na autentykacjê
@@ -38,7 +84,12 @@ klientów HTTP z u¿yciem bazy danych mysql.
 Com o mod_auth_mysql você pode fazer autenticação no Apache usando o
 MySQL.
 
-%prep 
+%description -l sv
+mod_auth_mysql kan användas för att begränsa åtkomsten till dokument
+servade av en webbserver genom att kontrollera data i en
+MySQL-databas.
+
+%prep
 %setup -q -T -c
 gzip -dc %{SOURCE0} > mod_%{mod_name}.c
 %patch -p1
