@@ -14,7 +14,7 @@ Summary(pt_BR):	Autenticação via MySQL para o Apache
 Summary(sv):	Grundläggande autenticering för webbservern Apache med en MySQL-databas
 Name:		apache-mod_%{mod_name}
 Version:	2.20a
-Release:	2
+Release:	3
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://web.oyvax.com/src/mod_auth_mysql-%{version}.tar.gz
@@ -93,8 +93,6 @@ install -d $RPM_BUILD_ROOT%{_pkglibdir}
 
 install mod_%{mod_name}.so $RPM_BUILD_ROOT%{_pkglibdir}
 
-gzip -9nf README* USAGE
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -114,5 +112,5 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc README* USAGE
 %attr(755,root,root) %{_pkglibdir}/*
