@@ -1,0 +1,48 @@
+This document describes how to use group-based authorization using my
+version of mod_auth_mysql.c.  This version is based heavily on my own
+version of mod_auth_msql.c, which was widely distributed prior to the
+one currently shipped with Apache.
+
+There are two options to using groups.  You can put the "user_group"
+field into the same table as the user database if each user is in only
+one group, or you can have a separate table that contains the fields
+"user_name" and "user_group" if each user is a member of multiple
+groups.
+
+If the user_group field is part of the full user table, the table has
+three fields at least: user_name, user_group, user_passwd.  The
+user_group field must be "PRIMARY KEY" in the user database containing
+a password.  The htaccess file would be this:
+
+AuthName My Authorization
+AuthType Basic
+AuthGroupFile /dev/null
+AuthMySQLHost localhost
+AuthMySQLDB authdata
+AuthMySQLUserTable user_info
+AuthMySQLGroupField user_group
+require group admin
+
+If you have a separate database for groups, the two tables would be
+
+user_info: user_name, user_passwd (user_name must be PRIMARY KEY)
+user_group: user_name, user_group (user is not PRIMARY KEY, as we have
+	multiple tuples for user_name,user_group to let a user be in
+	multiple groups)
+
+and htaccess would have this:
+
+AuthName My Authorzation
+AuthType Basic
+AuthGroupFile /dev/null
+AuthMySQLHost localhost
+AuthMySQLDB authdata
+AuthMySQLUserTable user_info
+
+AuthMySQLGroupTable my_groups
+AuthMySQLGroupField user_group
+require group admin
+
+
+
+Assuming that the required group name is "admin".
