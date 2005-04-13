@@ -87,14 +87,14 @@ sed -i -e 's#/usr/bin/apxs2#%{apxs}#g' configure*
 	--enable-apache2 \
 	--with-apxs=%{apxs} \
 	--with-mysql=%{_prefix}
-echo '#define APACHE2 1' >> config.h
-%{__make}
+%{apxs} -c -DAPACHE2 -DAPR_XtOffsetOf=APR_OFFSETOF -I %{_includedir}/mysql mod_%{mod_name}.c \
+	`%{_bindir}/apr-1-config --link-ld` `%{_bindir}/apu-1-config --link-ld` -lcrypt -lmysqlclient 
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}/conf.d}
 
-install mod_%{mod_name}.so $RPM_BUILD_ROOT%{_pkglibdir}
+libtool install mod_%{mod_name}.la $RPM_BUILD_ROOT%{_pkglibdir}
 
 echo 'LoadModule %{mod_name}_module	modules/mod_%{mod_name}.so' > \
 	$RPM_BUILD_ROOT%{_sysconfdir}/conf.d/90_mod_%{mod_name}.conf
@@ -116,6 +116,6 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc README* USAGE
+%doc DIRECTIVES USAGE
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/conf.d/*_mod_%{mod_name}.conf
-%attr(755,root,root) %{_pkglibdir}/*
+%attr(755,root,root) %{_pkglibdir}/*.so
