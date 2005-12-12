@@ -19,12 +19,12 @@ License:	GPL
 Group:		Networking/Daemons
 Source0:	ftp://ftp.debian.org/debian/pool/main/liba/libapache-mod-auth-mysql/libapache-mod-auth-mysql_%{version}.orig.tar.gz
 # Source0-md5:	9c1ecbe5fb64d4c93444311ff34bfe35
+BuildRequires:	%{apxs}
 BuildRequires:	apache-devel >= 2.0.0
 BuildRequires:	apr-util >= 1:1.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	mysql-devel
-BuildRequires:	%{apxs}
 Requires:	apache >= 2.0.0
 Requires:	apache-mod_auth
 Obsoletes:	apache-mod_%{mod_name} <= %{version}
@@ -89,7 +89,7 @@ sed -i -e 's#/usr/bin/apxs2#%{apxs}#g' configure*
 	--with-apxs=%{apxs} \
 	--with-mysql=%{_prefix}
 %{apxs} -c -DAPACHE2 -DAPR_XtOffsetOf=APR_OFFSETOF -I %{_includedir}/mysql mod_%{mod_name}.c \
-	`%{_bindir}/apr-1-config --link-ld` `%{_bindir}/apu-1-config --link-ld` -lcrypt -lmysqlclient 
+	`%{_bindir}/apr-1-config --link-ld` `%{_bindir}/apu-1-config --link-ld` -lcrypt -lmysqlclient
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -118,5 +118,5 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc DIRECTIVES USAGE
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/conf.d/*_mod_%{mod_name}.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/conf.d/*_mod_%{mod_name}.conf
 %attr(755,root,root) %{_pkglibdir}/*.so
