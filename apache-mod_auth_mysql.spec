@@ -27,7 +27,6 @@ BuildRequires:	automake
 BuildRequires:	mysql-devel
 Requires:	apache >= 2.0.0
 Requires:	apache-mod_auth
-Obsoletes:	apache-mod_%{mod_name} <= %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_pkglibdir	%(%{apxs} -q LIBEXECDIR 2>/dev/null)
