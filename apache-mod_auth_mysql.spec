@@ -19,13 +19,15 @@ License:	GPL
 Group:		Networking/Daemons
 Source0:	ftp://ftp.debian.org/debian/pool/main/liba/libapache-mod-auth-mysql/libapache-mod-auth-mysql_%{version}.orig.tar.gz
 # Source0-md5:	9c1ecbe5fb64d4c93444311ff34bfe35
+Patch0:		%{name}-ac.patch
 BuildRequires:	%{apxs}
 BuildRequires:	apache-devel >= 2.0.0
 BuildRequires:	apr-util >= 1:1.0
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	libtool
 BuildRequires:	mysql-devel
-Requires:	apache >= 2.0.0
+Requires:	apache(modules-api) = %apache_modules_api
 Requires:	apache-mod_auth
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -80,42 +82,45 @@ MySQL-databas.
 
 %prep
 %setup -q -n mod-auth-mysql-%{version}
+%patch0 -p1
 
 %build
-sed -i -e 's#/usr/bin/apxs2#%{apxs}#g' configure*
+%{__aclocal}
+%{__autoconf}
 %configure \
+	--disable-apache13 \
 	--enable-apache2 \
-	--with-apxs=%{apxs} \
+	--with-apxs2=%{apxs} \
 	--with-mysql=%{_prefix}
-%{apxs} -c -DAPACHE2 -DAPR_XtOffsetOf=APR_OFFSETOF -I %{_includedir}/mysql mod_%{mod_name}.c \
-	`%{_bindir}/apr-1-config --link-ld` `%{_bindir}/apu-1-config --link-ld` -lcrypt -lmysqlclient
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}/conf.d}
+install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}/httpd.conf}
 
-libtool install mod_%{mod_name}.la $RPM_BUILD_ROOT%{_pkglibdir}
+libtool install apache2_mod_%{mod_name}.la $RPM_BUILD_ROOT%{_pkglibdir}
+rm -f $RPM_BUILD_ROOT%{_pkglibdir}/*.{l,}a
 
 echo 'LoadModule %{mod_name}_module	modules/mod_%{mod_name}.so' > \
-	$RPM_BUILD_ROOT%{_sysconfdir}/conf.d/90_mod_%{mod_name}.conf
+	$RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/90_mod_%{mod_name}.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
-if [ -f /var/lock/subsys/apache ]; then
-	/etc/rc.d/init.d/apache restart 1>&2
+if [ -f /var/lock/subsys/httpd ]; then
+	/etc/rc.d/init.d/httpd restart 1>&2
 fi
 
 %postun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/apache ]; then
-		/etc/rc.d/init.d/apache restart 1>&2
+	if [ -f /var/lock/subsys/httpd ]; then
+		/etc/rc.d/init.d/httpd restart 1>&2
 	fi
 fi
 
 %files
 %defattr(644,root,root,755)
 %doc DIRECTIVES USAGE
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/conf.d/*_mod_%{mod_name}.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf/*_mod_%{mod_name}.conf
 %attr(755,root,root) %{_pkglibdir}/*.so
