@@ -14,7 +14,7 @@ Summary(pt_BR):	Autenticação via MySQL para o Apache
 Summary(sv):	Grundläggande autenticering för webbservern Apache med en MySQL-databas
 Name:		apache-mod_%{mod_name}
 Version:	4.3.9
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		Networking/Daemons
 Source0:	ftp://ftp.debian.org/debian/pool/main/liba/libapache-mod-auth-mysql/libapache-mod-auth-mysql_%{version}.orig.tar.gz
@@ -102,7 +102,7 @@ install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}/httpd.conf}
 libtool install apache2_mod_%{mod_name}.la $RPM_BUILD_ROOT%{_pkglibdir}
 rm -f $RPM_BUILD_ROOT%{_pkglibdir}/*.{l,}a
 
-echo 'LoadModule %{mod_name}_module	modules/mod_%{mod_name}.so' > \
+echo 'LoadModule %{mod_name}_module	modules/apache2_mod_%{mod_name}.so' > \
 	$RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/90_mod_%{mod_name}.conf
 
 %clean
