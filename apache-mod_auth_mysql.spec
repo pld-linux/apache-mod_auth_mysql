@@ -1,17 +1,17 @@
 %define		mod_name	auth_mysql
 %define		apxs		/usr/sbin/apxs
 Summary:	This is the MySQL authentication module for Apache
-Summary(cs):	Základní autentizace pro WWW server Apache pomocí MySQL
-Summary(da):	Autenticering for webtjeneren Apache fra en MySQL-database
-Summary(de):	Authentifizierung für den Apache Web-Server, der eine MySQL-Datenbank verwendet
-Summary(es):	Autenticación vía MySQL para Apache
-Summary(fr):	Authentification de base pour le serveur Web Apache utilisant une base de données MySQL
-Summary(it):	Autenticazione di base per il server Web Apache mediante un database MySQL
-Summary(ja):	MySQL ¥Ç¡¼¥¿¥Ù¡¼¥¹¤ò»È¤Ã¤¿ Apache Web ¥µ¡¼¥Ğ¡¼¤Ø¤Î´ğËÜÇ§¾Ú
-Summary(nb):	Autentisering for webtjeneren Apache fra en MySQL-database
-Summary(pl):	Modu³ uwierzytelnienia MySQL dla Apache
-Summary(pt_BR):	Autenticação via MySQL para o Apache
-Summary(sv):	Grundläggande autenticering för webbservern Apache med en MySQL-databas
+Summary(cs.UTF-8):   ZÃ¡kladnÃ­ autentizace pro WWW server Apache pomocÃ­ MySQL
+Summary(da.UTF-8):   Autenticering for webtjeneren Apache fra en MySQL-database
+Summary(de.UTF-8):   Authentifizierung fÃ¼r den Apache Web-Server, der eine MySQL-Datenbank verwendet
+Summary(es.UTF-8):   AutenticaciÃ³n vÃ­a MySQL para Apache
+Summary(fr.UTF-8):   Authentification de base pour le serveur Web Apache utilisant une base de donnÃ©es MySQL
+Summary(it.UTF-8):   Autenticazione di base per il server Web Apache mediante un database MySQL
+Summary(ja.UTF-8):   MySQL ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã‚’ä½¿ã£ãŸ Apache Web ã‚µãƒ¼ãƒãƒ¼ã¸ã®åŸºæœ¬èªè¨¼
+Summary(nb.UTF-8):   Autentisering for webtjeneren Apache fra en MySQL-database
+Summary(pl.UTF-8):   ModuÅ‚ uwierzytelnienia MySQL dla Apache
+Summary(pt_BR.UTF-8):   AutenticaÃ§Ã£o via MySQL para o Apache
+Summary(sv.UTF-8):   GrundlÃ¤ggande autenticering fÃ¶r webbservern Apache med en MySQL-databas
 Name:		apache-mod_%{mod_name}
 Version:	4.3.9
 Release:	0.2
@@ -39,45 +39,45 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 This is an authentication module for Apache that allows you to
 authenticate HTTP clients using MySQL RDBMS.
 
-%description -l cs
-Balíèek mod_auth_mysql slou¾í pro omezení pøístupu k dokumentùm, které
-poskytuje WWW server Apache. Jména a hesla jsou ulo¾ena v databázi
+%description -l cs.UTF-8
+BalÃ­Äek mod_auth_mysql slouÅ¾Ã­ pro omezenÃ­ pÅ™Ã­stupu k dokumentÅ¯m, kterÃ©
+poskytuje WWW server Apache. JmÃ©na a hesla jsou uloÅ¾ena v databÃ¡zi
 MySQL.
 
-%description -l de
+%description -l de.UTF-8
 mod_auth_mysql kann verwendet werden, um den Zugriff auf von einem
-Web- Server bediente Dokumente zu beschränken, indem es die Daten in
-einer MySQL-Datenbank prüft.
+Web- Server bediente Dokumente zu beschrÃ¤nken, indem es die Daten in
+einer MySQL-Datenbank prÃ¼ft.
 
-%description -l es
+%description -l es.UTF-8
 mod_auth_mysql puede usarse para limitar el acceso a documentos
 servidos por un servidor web verificando datos en una base de datos
 MySQL.
 
-%description -l fr
-mod_auth_mysql peut être utilisé pour limiter l'accès à des documents
-servis par un serveur Web en vérifiant les données dans une base de
-données MySQL.
+%description -l fr.UTF-8
+mod_auth_mysql peut Ãªtre utilisÃ© pour limiter l'accÃ¨s Ã  des documents
+servis par un serveur Web en vÃ©rifiant les donnÃ©es dans une base de
+donnÃ©es MySQL.
 
-%description -l it
-mod_auth_mysql può essere usato per limitare l'accesso a documenti
+%description -l it.UTF-8
+mod_auth_mysql puÃ² essere usato per limitare l'accesso a documenti
 serviti da un server Web controllando i dati in un database MySQL.
 
-%description -l ja
-mod_auth_mysql ¤Ï¡¢MySQL ¥Ç¡¼¥¿¥Ù¡¼¥¹¤Î¥Ç¡¼¥¿¤ò¥Á¥§¥Ã¥¯¤¹¤ë¤³¤È
-¤Ë¤è¤Ã¤Æ¡¢Web ¥µ¡¼¥Ğ¡¼¤¬Äó¶¡¤¹¤ë¥É¥­¥å¥á¥ó¥È¤Ø¤Î¥¢¥¯¥»¥¹¤òÀ©¸Â¤¹¤ë¤³¤È
-¤¬¤Ç¤­¤Ş¤¹¡£
+%description -l ja.UTF-8
+mod_auth_mysql ã¯ã€MySQL ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã®ãƒ‡ãƒ¼ã‚¿ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã“ã¨
+ã«ã‚ˆã£ã¦ã€Web ã‚µãƒ¼ãƒãƒ¼ãŒæä¾›ã™ã‚‹ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã‚’åˆ¶é™ã™ã‚‹ã“ã¨
+ãŒã§ãã¾ã™ã€‚
 
-%description -l pl
-To jest modu³ uwierzytelnienia dla Apache pozwalaj±cy na
-uwierzytelnianie klientów HTTP z u¿yciem bazy danych MySQL.
+%description -l pl.UTF-8
+To jest moduÅ‚ uwierzytelnienia dla Apache pozwalajÄ…cy na
+uwierzytelnianie klientÃ³w HTTP z uÅ¼yciem bazy danych MySQL.
 
-%description -l pt_BR
-Com o mod_auth_mysql você pode fazer autenticação no Apache usando o
+%description -l pt_BR.UTF-8
+Com o mod_auth_mysql vocÃª pode fazer autenticaÃ§Ã£o no Apache usando o
 MySQL.
 
-%description -l sv
-mod_auth_mysql kan användas för att begränsa åtkomsten till dokument
+%description -l sv.UTF-8
+mod_auth_mysql kan anvÃ¤ndas fÃ¶r att begrÃ¤nsa Ã¥tkomsten till dokument
 servade av en webbserver genom att kontrollera data i en
 MySQL-databas.
 
