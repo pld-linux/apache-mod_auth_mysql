@@ -1,17 +1,17 @@
 %define		mod_name	auth_mysql
 %define		apxs		/usr/sbin/apxs
 Summary:	This is the MySQL authentication module for Apache
-Summary(cs.UTF-8):   Základní autentizace pro WWW server Apache pomocí MySQL
-Summary(da.UTF-8):   Autenticering for webtjeneren Apache fra en MySQL-database
-Summary(de.UTF-8):   Authentifizierung für den Apache Web-Server, der eine MySQL-Datenbank verwendet
-Summary(es.UTF-8):   Autenticación vía MySQL para Apache
-Summary(fr.UTF-8):   Authentification de base pour le serveur Web Apache utilisant une base de données MySQL
-Summary(it.UTF-8):   Autenticazione di base per il server Web Apache mediante un database MySQL
-Summary(ja.UTF-8):   MySQL データベースを使った Apache Web サーバーへの基本認証
-Summary(nb.UTF-8):   Autentisering for webtjeneren Apache fra en MySQL-database
-Summary(pl.UTF-8):   Moduł uwierzytelnienia MySQL dla Apache
-Summary(pt_BR.UTF-8):   Autenticação via MySQL para o Apache
-Summary(sv.UTF-8):   Grundläggande autenticering för webbservern Apache med en MySQL-databas
+Summary(cs.UTF-8):	Základní autentizace pro WWW server Apache pomocí MySQL
+Summary(da.UTF-8):	Autenticering for webtjeneren Apache fra en MySQL-database
+Summary(de.UTF-8):	Authentifizierung für den Apache Web-Server, der eine MySQL-Datenbank verwendet
+Summary(es.UTF-8):	Autenticación vía MySQL para Apache
+Summary(fr.UTF-8):	Authentification de base pour le serveur Web Apache utilisant une base de données MySQL
+Summary(it.UTF-8):	Autenticazione di base per il server Web Apache mediante un database MySQL
+Summary(ja.UTF-8):	MySQL データベースを使った Apache Web サーバーへの基本認証
+Summary(nb.UTF-8):	Autentisering for webtjeneren Apache fra en MySQL-database
+Summary(pl.UTF-8):	Moduł uwierzytelnienia MySQL dla Apache
+Summary(pt_BR.UTF-8):	Autenticação via MySQL para o Apache
+Summary(sv.UTF-8):	Grundläggande autenticering för webbservern Apache med en MySQL-databas
 Name:		apache-mod_%{mod_name}
 Version:	4.3.9
 Release:	0.2
