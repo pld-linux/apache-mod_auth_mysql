@@ -20,7 +20,7 @@ Group:		Networking/Daemons
 Source0:	ftp://ftp.debian.org/debian/pool/main/liba/libapache-mod-auth-mysql/libapache-mod-auth-mysql_%{version}.orig.tar.gz
 # Source0-md5:	9c1ecbe5fb64d4c93444311ff34bfe35
 Patch0:		%{name}-ac.patch
-BuildRequires:	apache-apxs >= 2.0
+BuildRequires:	%{apxs}
 BuildRequires:	apache-devel >= 2.0.0
 BuildRequires:	apr-util >= 1:1.0
 BuildRequires:	autoconf
