@@ -20,6 +20,9 @@ Group:		Networking/Daemons/HTTP
 Source0:	ftp://ftp.debian.org/debian/pool/main/liba/libapache-mod-auth-mysql/libapache-mod-auth-mysql_%{version}.orig.tar.gz
 # Source0-md5:	9c1ecbe5fb64d4c93444311ff34bfe35
 Patch0:		%{name}-ac.patch
+# Needs review:
+#  https://rhn.redhat.com/errata/RHSA-2009-0259.html
+BuildRequires:	security(CVE-2008-2384)
 BuildRequires:	%{apxs}
 BuildRequires:	apache-devel >= 2.0.0
 BuildRequires:	apr-util >= 1:1.0
