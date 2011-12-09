@@ -36,7 +36,7 @@ Requires:	apache-mod_auth
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_pkglibdir	%(%{apxs} -q LIBEXECDIR 2>/dev/null)
-%define		_sysconfdir	%(%{apxs} -q SYSCONFDIR 2>/dev/null)
+%define		_sysconfdir	%(%{apxs} -q SYSCONFDIR 2>/dev/null)/conf.d
 
 %description
 This is an authentication module for Apache that allows you to
@@ -92,6 +92,7 @@ MySQL-databas.
 %{__aclocal}
 %{__autoconf}
 %configure \
+	--disable-static \
 	--disable-apache13 \
 	--enable-apache2 \
 	--with-apxs2=%{apxs} \
@@ -100,13 +101,13 @@ MySQL-databas.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}/httpd.conf}
+install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}}
 
 libtool install apache2_mod_%{mod_name}.la $RPM_BUILD_ROOT%{_pkglibdir}
 rm -f $RPM_BUILD_ROOT%{_pkglibdir}/*.{l,}a
 
 echo 'LoadModule %{mod_name}_module	modules/apache2_mod_%{mod_name}.so' > \
-	$RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/90_mod_%{mod_name}.conf
+	$RPM_BUILD_ROOT%{_sysconfdir}/90_mod_%{mod_name}.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -122,5 +123,5 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc DIRECTIVES USAGE
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf/*_mod_%{mod_name}.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*_mod_%{mod_name}.conf
 %attr(755,root,root) %{_pkglibdir}/*.so
