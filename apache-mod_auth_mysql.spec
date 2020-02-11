@@ -17,7 +17,7 @@ Version:	4.3.9
 Release:	0.2
 License:	GPL
 Group:		Networking/Daemons/HTTP
-Source0:	ftp://ftp.debian.org/debian/pool/main/liba/libapache-mod-auth-mysql/libapache-mod-auth-mysql_%{version}.orig.tar.gz
+Source0:	http://ftp.debian.org/debian/pool/main/liba/libapache-mod-auth-mysql/libapache-mod-auth-mysql_%{version}.orig.tar.gz
 # Source0-md5:	9c1ecbe5fb64d4c93444311ff34bfe35
 Patch0:		%{name}-ac.patch
 # Needs review:
