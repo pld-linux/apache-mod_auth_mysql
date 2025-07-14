@@ -86,7 +86,7 @@ MySQL-databas.
 
 %prep
 %setup -q -n mod-auth-mysql-%{version}
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %{__aclocal}
